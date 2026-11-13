@@ -1,949 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anand Sharma - Backend Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-50: #fafafa;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --gray-900: #171717;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.7;
-            letter-spacing: -0.01em;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--black);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--black);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Sections */
-        section {
-            padding: 8rem 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        section:first-of-type {
-            padding-top: 10rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: left;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero .location {
-            font-size: 1rem;
-            color: var(--gray-500);
-            margin-bottom: 2rem;
-            letter-spacing: 0.05em;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--gray-700);
-            margin-bottom: 2rem;
-            font-weight: 400;
-            line-height: 1.6;
-            animation: fadeInUp 0.8s ease 0.3s backwards;
-        }
-
-        .hero .bio {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
-        }
-
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.5s backwards;
-        }
-
-        .contact-info a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-info a:hover {
-            color: var(--black);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s backwards;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border: 2px solid var(--black);
-        }
-
-        .btn-primary {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .btn-secondary:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* Section Titles */
-        .section-header {
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray-500);
-            max-width: 600px;
-        }
-
-        /* Experience Section */
-        .experience-item {
-            margin-bottom: 4rem;
-            padding-bottom: 4rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .experience-title {
-            flex: 1;
-        }
-
-        .experience-title h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .experience-role {
-            font-size: 1rem;
-            color: var(--gray-600);
-            font-weight: 500;
-        }
-
-        .experience-date {
-            color: var(--gray-500);
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-        }
-
-        .experience-project {
-            font-style: italic;
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-        }
-
-        .experience-description {
-            color: var(--gray-700);
-            line-height: 1.8;
-        }
-
-        .experience-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .experience-description li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.8rem;
-        }
-
-        .experience-description li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--gray-400);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            gap: 3rem;
-        }
-
-        .project-card {
-            padding: 2.5rem;
-            border: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .project-card:hover {
-            border-color: var(--black);
-            box-shadow: 8px 8px 0 var(--gray-100);
-            transform: translate(-4px, -4px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            gap: 1rem;
-        }
-
-        .project-header h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .project-link {
-            color: var(--gray-500);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .project-link:hover {
-            color: var(--black);
-        }
-
-        .project-tech {
-            color: var(--gray-500);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .project-description li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.8rem;
-            color: var(--gray-700);
-            line-height: 1.7;
-        }
-
-        .project-description li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--black);
-            font-weight: bold;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--black);
-        }
-
-        .skill-list {
-            color: var(--gray-700);
-            line-height: 1.9;
-        }
-
-        /* Achievements Section */
-        .achievements-list {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .achievement-item {
-            padding: 2rem;
-            border-left: 3px solid var(--black);
-            background: var(--gray-50);
-        }
-
-        .achievement-item h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-item p {
-            color: var(--gray-600);
-            line-height: 1.7;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-link {
-            color: var(--gray-500);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .achievement-link:hover {
-            color: var(--black);
-        }
-
-        /* Education Section */
-        .education-card {
-            padding: 2.5rem;
-            border: 1px solid var(--gray-200);
-            background: var(--white);
-        }
-
-        .education-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-details {
-            color: var(--gray-600);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-cgpa {
-            color: var(--black);
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        /* Leadership Section */
-        .leadership-card {
-            padding: 2.5rem;
-            border: 1px solid var(--gray-200);
-            margin-bottom: 2rem;
-        }
-
-        .leadership-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .leadership-header h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .leadership-role {
-            color: var(--gray-600);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .leadership-date {
-            color: var(--gray-500);
-            font-size: 0.9rem;
-        }
-
-        .leadership-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .leadership-description li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.8rem;
-            color: var(--gray-700);
-        }
-
-        .leadership-description li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--black);
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 800px;
-        }
-
-        .contact-content p {
-            font-size: 1.2rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-method {
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-            text-align: center;
-            text-decoration: none;
-            color: var(--gray-700);
-            transition: all 0.3s ease;
-        }
-
-        .contact-method:hover {
-            border-color: var(--black);
-            background: var(--gray-50);
-        }
-
-        .contact-method-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-method-label {
-            font-weight: 600;
-            color: var(--black);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-method-value {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--gray-200);
-            color: var(--gray-500);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            section {
-                padding: 5rem 0;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .experience-header,
-            .project-header,
-            .leadership-header {
-                flex-direction: column;
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            nav {
-                display: none;
-            }
-
-            section {
-                page-break-inside: avoid;
-                min-height: auto;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anand Sharma — Backend Developer</title>
+<meta name="description" content="Anand Sharma — Backend Developer building secure, multi-tenant SaaS platforms and distributed systems with Spring Boot, Django, and AWS." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     THEME — "Midnight Editor"
+     A calm, IDE-inspired palette: deep navy canvas, muted
+     surfaces, teal + lavender accents, monospace annotations.
+     ============================================================ */
+  :root {
+    --bg:            #0b0f17;
+    --bg-soft:       #0e1420;
+    --surface:       #121927;
+    --surface-2:     #17202f;
+    --border:        #1f2a3d;
+    --border-soft:   #1a2334;
+
+    --text:          #e6ebf4;
+    --text-dim:      #a8b3c7;
+    --text-faint:    #6b7891;
+
+    --accent:        #5eead4;   /* teal   */
+    --accent-2:      #a5b4fc;   /* lavender */
+    --accent-glow:   rgba(94, 234, 212, 0.14);
+    --accent-line:   rgba(94, 234, 212, 0.35);
+
+    --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --radius: 14px;
+    --nav-h: 68px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ambient background: dot grid + soft aurora glows */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: -2;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(600px 400px at 85% -5%,  rgba(94, 234, 212, 0.07), transparent 65%),
+      radial-gradient(700px 500px at 8% 108%,  rgba(165, 180, 252, 0.06), transparent 65%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  ::selection { background: rgba(94, 234, 212, 0.25); color: #fff; }
+
+  a { color: inherit; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ---------- Navigation ---------- */
+  nav {
+    position: fixed; top: 0; width: 100%;
+    height: var(--nav-h);
+    display: flex; align-items: center;
+    background: rgba(11, 15, 23, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-soft);
+    z-index: 1000;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo .prompt { color: var(--accent); }
+  .nav-logo .cursor {
+    display: inline-block; width: 8px; height: 1.05em;
+    background: var(--accent); margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  nav ul { list-style: none; display: flex; gap: 0.4rem; }
+  nav ul a {
+    font-family: var(--mono);
+    font-size: 0.8rem; color: var(--text-faint);
+    text-decoration: none;
+    padding: 0.45rem 0.85rem; border-radius: 8px;
+    transition: color 0.25s, background 0.25s;
+  }
+  nav ul a:hover { color: var(--text); background: var(--surface); }
+  nav ul a.active { color: var(--accent); background: var(--accent-glow); }
+  nav ul a .num { color: var(--accent-2); margin-right: 0.3rem; opacity: 0.7; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 7rem 0 5.5rem; }
+
+  .section-header { margin-bottom: 3.5rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.82rem; letter-spacing: 0.08em;
+    color: var(--accent);
+    display: block; margin-bottom: 0.9rem;
+  }
+  .section-label::before { content: '// '; color: var(--text-faint); }
+  .section-title {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.15;
+  }
+  .section-subtitle { color: var(--text-dim); margin-top: 0.8rem; max-width: 620px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: var(--nav-h);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.25fr 0.75fr;
+    gap: 4rem; align-items: center; width: 100%;
+  }
+  .hero-kicker {
+    font-family: var(--mono); font-size: 0.9rem;
+    color: var(--accent); margin-bottom: 1.2rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-kicker::before {
+    content: ''; width: 2.2rem; height: 1px; background: var(--accent-line);
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+    font-weight: 800; letter-spacing: -0.035em; line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .hero .role {
+    font-family: var(--mono);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--text-dim); margin-bottom: 1.6rem;
+  }
+  .hero .role .type::after {
+    content: '▍'; color: var(--accent);
+    animation: blink 1s steps(1) infinite;
+    margin-left: 2px;
+  }
+  .hero .bio {
+    color: var(--text-dim); font-size: 1.02rem; max-width: 560px;
+    margin-bottom: 2.2rem;
+  }
+  .hero .bio strong { color: var(--text); font-weight: 600; }
+
+  .hero-links { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-bottom: 2.4rem; }
+  .hero-links a {
+    font-family: var(--mono); font-size: 0.85rem;
+    color: var(--text-dim); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    transition: color 0.25s;
+  }
+  .hero-links a:hover { color: var(--accent); }
+  .hero-links svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; padding: 0.85rem 1.7rem;
+    border-radius: 10px; border: 1px solid transparent;
+    transition: transform 0.2s, box-shadow 0.25s, background 0.25s, color 0.25s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: linear-gradient(100deg, var(--accent), #7dd3fc);
+    color: #06251f;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -8px var(--accent-glow), 0 0 0 1px var(--accent-line); }
+  .btn-ghost { border-color: var(--border); color: var(--text-dim); background: var(--surface); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--accent-line); transform: translateY(-2px); }
+
+  /* terminal card */
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(94, 234, 212, 0.05);
+    font-family: var(--mono); font-size: 0.82rem; line-height: 2;
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 7px;
+    padding: 0.75rem 1rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .terminal-bar span { width: 11px; height: 11px; border-radius: 50%; }
+  .t-red { background: #f87171; } .t-yellow { background: #fbbf24; } .t-green { background: #34d399; }
+  .terminal-bar em {
+    font-style: normal; margin-left: auto;
+    color: var(--text-faint); font-size: 0.72rem; letter-spacing: 0.05em;
+  }
+  .terminal-body { padding: 1.2rem 1.3rem 1.5rem; }
+  .terminal-body .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .t-prompt { color: var(--accent); }
+  .t-cmd { color: var(--text); }
+  .t-key { color: var(--accent-2); }
+  .t-val { color: var(--text-dim); }
+  .t-str { color: #86efac; }
+  .t-out { color: var(--text-dim); font-style: italic; }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline { position: relative; padding-left: 2.2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(var(--accent-line), var(--border) 15%, var(--border) 85%, transparent);
+  }
+  .tl-item { position: relative; padding-bottom: 3.5rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -2.2rem; top: 8px;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-glow);
+  }
+  .tl-item.past::before { border-color: var(--text-faint); box-shadow: none; }
+
+  .tl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
+  .tl-head h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+  .tl-head h3 a { text-decoration: none; transition: color 0.25s; }
+  .tl-head h3 a:hover { color: var(--accent); }
+  .tl-date {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-faint);
+    white-space: nowrap; padding: 0.2rem 0.7rem;
+    border: 1px solid var(--border); border-radius: 999px;
+  }
+  .tl-date.now { color: var(--accent); border-color: var(--accent-line); background: var(--accent-glow); }
+  .tl-role { font-family: var(--mono); font-size: 0.9rem; color: var(--accent-2); margin-bottom: 0.2rem; }
+  .tl-project { font-size: 0.9rem; color: var(--text-faint); font-style: italic; margin-bottom: 0.6rem; }
+
+  .tl-body { margin-top: 0.9rem; }
+  .tl-body ul { list-style: none; }
+  .tl-body li {
+    position: relative; padding-left: 1.5rem; margin-bottom: 0.7rem;
+    color: var(--text-dim); font-size: 0.97rem;
+  }
+  .tl-body li::before {
+    content: '›'; position: absolute; left: 0.2rem;
+    color: var(--accent); font-weight: 700;
+  }
+  .tl-body li strong { color: var(--text); font-weight: 600; }
+
+  /* ---------- Projects ---------- */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    display: flex; flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-line);
+    box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.8);
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.4rem; }
+  .project-card h3 { font-size: 1.12rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; }
+  .project-link {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    text-decoration: none; white-space: nowrap; flex: none;
+    opacity: 0.85; transition: opacity 0.25s;
+  }
+  .project-link:hover { opacity: 1; text-decoration: underline; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.9rem 0 1.1rem; }
+  .chip {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--accent-2);
+    background: rgba(165, 180, 252, 0.08);
+    border: 1px solid rgba(165, 180, 252, 0.18);
+    padding: 0.18rem 0.6rem; border-radius: 999px;
+  }
+  .project-card ul { list-style: none; }
+  .project-card li {
+    position: relative; padding-left: 1.3rem; margin-bottom: 0.6rem;
+    color: var(--text-dim); font-size: 0.92rem; line-height: 1.65;
+  }
+  .project-card li::before {
+    content: '▹'; position: absolute; left: 0; color: var(--accent);
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.3rem; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.8rem;
+    transition: border-color 0.25s;
+  }
+  .skill-card:hover { border-color: var(--accent-line); }
+  .skill-card h3 {
+    font-family: var(--mono); font-size: 0.82rem; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.55rem;
+  }
+  .skill-card h3::before { content: ''; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); flex: none; }
+  .skill-card .chips { margin: 0; }
+  .skill-card .chip { color: var(--text-dim); background: var(--surface-2); border-color: var(--border); }
+
+  /* ---------- Achievements ---------- */
+  .achievements-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.3rem; }
+  .achievement-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px 12px 12px 4px;
+    padding: 1.5rem 1.7rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .achievement-item:hover { transform: translateX(4px); box-shadow: -6px 0 24px -12px var(--accent-glow); }
+  .achievement-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .achievement-item p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 0.7rem; }
+  .achievement-link {
+    font-family: var(--mono); font-size: 0.76rem; color: var(--accent);
+    text-decoration: none;
+  }
+  .achievement-link:hover { text-decoration: underline; }
+  .achievement-item.highlight { border-left-color: #fbbf24; }
+  .achievement-item.highlight .badge {
+    font-family: var(--mono); font-size: 0.68rem; color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.35); background: rgba(251, 191, 36, 0.08);
+    border-radius: 999px; padding: 0.12rem 0.55rem; margin-left: 0.5rem; vertical-align: 2px;
+  }
+
+  /* ---------- Education & Leadership ---------- */
+  .edu-leader { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    height: 100%;
+  }
+  .info-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .info-card .meta { font-family: var(--mono); font-size: 0.82rem; color: var(--text-faint); margin-bottom: 0.3rem; }
+  .info-card .cgpa {
+    display: inline-block; margin-top: 0.9rem;
+    font-family: var(--mono); font-size: 0.85rem; color: var(--accent);
+    border: 1px dashed var(--accent-line); border-radius: 8px;
+    padding: 0.35rem 0.9rem; background: var(--accent-glow);
+  }
+  .info-card ul { list-style: none; margin-top: 1rem; }
+  .info-card li { position: relative; padding-left: 1.4rem; margin-bottom: 0.65rem; color: var(--text-dim); font-size: 0.94rem; }
+  .info-card li::before { content: '—'; position: absolute; left: 0; color: var(--accent-2); }
+  .subhead {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--accent);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .subhead::before { content: '// '; color: var(--text-faint); }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; }
+  .contact .section-header { text-align: center; }
+  .contact .section-label { justify-content: center; }
+  .contact-lead { color: var(--text-dim); max-width: 560px; margin: 0 auto 3rem; font-size: 1.05rem; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.1rem; max-width: 880px; margin: 0 auto; }
+  .contact-method {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.6rem 1.2rem;
+    text-decoration: none; text-align: center;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .contact-method:hover {
+    transform: translateY(-4px); border-color: var(--accent-line);
+    box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.8);
+  }
+  .contact-method svg { width: 22px; height: 22px; fill: var(--accent); margin-bottom: 0.8rem; }
+  .contact-method-label { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .contact-method-value { font-family: var(--mono); font-size: 0.76rem; color: var(--text-faint); word-break: break-all; }
+
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    border-top: 1px solid var(--border-soft);
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-faint);
+  }
+  footer .heart { color: var(--accent); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero .role .type::after, .nav-logo .cursor { animation: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .terminal { display: none; }
+    .edu-leader { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    nav ul { gap: 0.05rem; }
+    nav ul a { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
+    nav ul a .num { display: none; }
+    section { padding: 5rem 0 4rem; }
+    .tl-head { flex-direction: column; gap: 0.5rem; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    nav, .terminal, .cta-row { display: none; }
+    body { background: #fff; color: #111; }
+    body::before, body::after { display: none; }
+    .reveal { opacity: 1; transform: none; }
+    section { padding: 1.5rem 0; }
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
+
+<!-- ================= Navigation ================= -->
+<nav>
+  <div class="container">
+    <a class="nav-logo" href="#home"><span class="prompt">~/</span>anand-sharma<span class="cursor"></span></a>
+    <ul>
+      <li><a href="#experience"><span class="num">01</span>Experience</a></li>
+      <li><a href="#projects"><span class="num">02</span>Projects</a></li>
+      <li><a href="#skills"><span class="num">03</span>Skills</a></li>
+      <li><a href="#achievements"><span class="num">04</span>Achievements</a></li>
+      <li><a href="#background"><span class="num">05</span>Background</a></li>
+      <li><a href="#contact"><span class="num">06</span>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= Hero ================= -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-kicker">Pune, Maharashtra · India</p>
+        <h1>Anand <span class="accent">Sharma</span></h1>
+        <p class="role"><span class="type" id="type-text">backend_developer()</span></p>
+        <p class="bio">
+          I build <strong>secure, multi-tenant SaaS platforms</strong> and distributed systems —
+          API gateways, tenant-isolated PostgreSQL schemas, and presigned file workflows on AWS.
+          Previously shipped async LLM pipelines (Gemini, Qdrant) and Django/DRF backends.
+          B.Tech in AI &amp; Data Science, IEEE-published researcher, two-time student entrepreneur.
+        </p>
+
+        <div class="hero-links">
+          <a href="mailto:anand120823@gmail.com">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.5l-8 5.2-8-5.2V6h16zM4 18V8.9l7.5 4.9a1 1 0 0 0 1 0L20 8.9V18H4z"/></svg>
+            anand120823@gmail.com
+          </a>
+          <a href="tel:+918855011069">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1z"/></svg>
+            +91 88550 11069
+          </a>
+          <a href="https://github.com/AnandS1807" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/anand-sharma-75644b25a/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.49 2.49 0 1 1 5 8.48a2.49 2.49 0 0 1-.02-4.98zM3 9.75h4V21H3zM9.5 9.75h3.8v1.54h.06a4.17 4.17 0 0 1 3.75-2.06c4 0 4.75 2.64 4.75 6.06V21h-4v-5c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-3.8z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="#projects" class="btn btn-ghost">View projects ↓</a>
+        </div>
+      </div>
+
+      <aside class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+          <em>anand@dev — zsh</em>
+        </div>
+        <div class="terminal-body">
+          <span class="ln"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></span>
+          <span class="ln"><span class="t-out">anand — backend developer @ Caxsol</span></span>
+          <span class="ln"><span class="t-prompt">$</span> <span class="t-cmd">cat focus.json</span></span>
+          <span class="ln">{</span>
+          <span class="ln">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [<span class="t-str">"Spring Boot"</span>, <span class="t-str">"Django"</span>],</span>
+          <span class="ln">&nbsp;&nbsp;<span class="t-key">"cloud"</span>: <span class="t-str">"AWS"</span>,</span>
+          <span class="ln">&nbsp;&nbsp;<span class="t-key">"obsession"</span>: <span class="t-str">"multi-tenant security"</span></span>
+          <span class="ln">}</span>
+          <span class="ln"><span class="t-prompt">$</span> <span class="t-cmd">git log --oneline -1</span></span>
+          <span class="ln"><span class="t-val">a1f3c02 · feat: schema-per-tenant + RBAC ✓</span></span>
+          <span class="ln"><span class="t-prompt">$</span> <span class="t-cmd" id="term-cursor">▍</span></span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Experience ================= -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">career.git log</span>
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">Building secure, multi-tenant backends and production-ready AI pipelines.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-head">
+          <h3><a href="https://www.caxsol.com/" target="_blank" rel="noopener">Caxsol</a></h3>
+          <span class="tl-date now">Apr 2026 — Present</span>
+        </div>
+        <p class="tl-role">Backend Developer · Pune</p>
+        <div class="tl-body">
+          <ul>
+            <li>Built the <strong>API Gateway</strong> for a multi-tenant HR SaaS: Entra ID JWT validation (JWKS, signature/issuer/audience checks), routing across <strong>6 microservices</strong>, tenant-scoped rate limiting, and AWS Secrets Manager config.</li>
+            <li>Designed a <strong>presigned S3 upload/download flow</strong> (presign → direct browser upload → server-verified confirm) with per-tenant key scoping, size/MIME checks, magic-byte sniffing, and automatic quarantine cleanup — no file streams pass through the app server.</li>
+            <li>Hardened employee-profile APIs by enforcing <strong>authentication → authorization → ownership → validation</strong> ordering, closing an unauthenticated access path and preventing cross-tenant record-existence leaks; identity derived only from gateway-propagated JWT claims.</li>
+            <li>Extended a <strong>schema-per-tenant PostgreSQL</strong> model (Flyway migrations, partial unique indexes, cascade rules) and built <strong>80+ integration tests</strong> on a containerized stack (Postgres, LocalStack S3/Secrets Manager) covering RBAC matrices and file round-trips.</li>
+            <li>Built an <strong>AWS Lambda pipeline</strong> to parse, normalize, and tax-classify crypto transactions from multiple brokers (FIFO calculation, encoding and cross-environment fixes).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item past reveal">
+        <div class="tl-head">
+          <h3><a href="https://cruv.org" target="_blank" rel="noopener">Cruv.org</a></h3>
+          <span class="tl-date">Jan 2026 — Mar 2026</span>
+        </div>
+        <p class="tl-role">Backend Developer · Remote</p>
+        <div class="tl-body">
+          <ul>
+            <li>Built an <strong>async Python pipeline</strong> turning 70+ cybersecurity RSS feeds into executive-grade risk summaries using Gemini + LiteLLM, Qdrant embeddings, MongoDB bulk writes, and aiohttp, with health monitoring.</li>
+            <li>Built a <strong>Django + Mailgun email backend</strong> (webhooks/routes) with automated conversation threading, S3 attachment storage, and reliable inbound/outbound processing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item past reveal">
+        <div class="tl-head">
+          <h3>Technokeens IT Solutions Pvt Ltd</h3>
+          <span class="tl-date">Jun 2025 — Nov 2025</span>
+        </div>
+        <p class="tl-role">FullStack Developer</p>
+        <p class="tl-project">AI-Powered Project Management System</p>
+        <div class="tl-body">
+          <ul>
+            <li>Built a <strong>Django/DRF backend</strong> with token auth and REST APIs for projects, tasks, bugs, and sprints, integrated with a React frontend via Axios.</li>
+            <li>Developed workspace-specific <strong>real-time chat</strong> using Django Channels (WebSockets).</li>
+            <li>Deployed a private LLM (<strong>Llama 7B</strong>) on AWS EC2 GPU instances for automated field extraction from job descriptions and task generation — data stays private with no external AI APIs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Projects ================= -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">./projects</span>
+      <h2 class="section-title">Projects &amp; Open Source</h2>
+      <p class="section-subtitle">Solving real-world problems with AI and machine learning.</p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project-card reveal">
+        <div class="project-top">
+          <h3>Fashion Visual Search &amp; Intelligent Styling Assistant</h3>
+          <a href="https://github.com/AnandS1807/Fashion-Visual-Search-Intelligent-Styling-Assistant" target="_blank" rel="noopener" class="project-link">repo ↗</a>
+        </div>
+        <div class="chips">
+          <span class="chip">TypeScript</span><span class="chip">PyTorch</span><span class="chip">Selenium</span><span class="chip">CLIP</span>
+        </div>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li>Engineered a hybrid <strong>GNN-CLIP</strong> recommendation engine combining visual similarity, outfit compatibility learning (graph neural networks), and metadata-based filtering.</li>
+          <li>Delivered CLIP + FAISS visual search with <strong>97% accuracy</strong> and <strong>10ms query latency</strong> across 50K+ products.</li>
         </ul>
-    </nav>
+      </article>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Anand Sharma</h1>
-                <p class="location">Pune, Maharashtra</p>
-                <p class="tagline">Backend Developer building secure, multi-tenant SaaS platforms and distributed systems with Spring Boot, Django, and AWS.</p>
-                <p class="bio">Backend developer at Caxsol working on API gateways, tenant-isolated PostgreSQL schemas, and secure file workflows on AWS. Previously built async LLM pipelines (Gemini, Qdrant) and Django/DRF backends. B.Tech in AI &amp; Data Science from VIIT Pune, IEEE-published researcher, and two-time student entrepreneur.</p>
-
-                <div class="contact-info">
-                    <a href="tel:+918855011069">📞 +91 8855011069</a>
-                    <a href="mailto:anand120823@gmail.com">✉️ anand120823@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/anand-sharma-75644b25a/" target="_blank">💼 LinkedIn</a>
-                    <a href="https://github.com/AnandS1807" target="_blank">💻 GitHub</a>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
-                </div>
-            </div>
+      <article class="project-card reveal">
+        <div class="project-top">
+          <h3>Desktop AI Assistant — ML-Powered Automation</h3>
+          <a href="https://github.com/AnandS1807/joi-desktop-assistant" target="_blank" rel="noopener" class="project-link">repo ↗</a>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">Building secure, multi-tenant backends and production-ready AI pipelines</p>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">
-                        <h3><a href="https://www.caxsol.com/" target="_blank" style="color: inherit; text-decoration: none;">Caxsol, Pune</a></h3>
-                        <p class="experience-role">Backend Developer</p>
-                    </div>
-                    <span class="experience-date">April 2026 - Present</span>
-                </div>
-                <div class="experience-description">
-                    <ul>
-                        <li>Built the API Gateway for a multi-tenant HR SaaS: Entra ID JWT validation (JWKS, signature/issuer/audience checks), routing across 6 microservices, tenant-scoped rate limiting, and AWS Secrets Manager config.</li>
-                        <li>Designed a presigned S3 upload/download flow (presign → direct browser upload → server-verified confirm) with per-tenant key scoping, size/MIME checks, magic-byte sniffing, and automatic quarantine cleanup, so no file streams pass through the app server.</li>
-                        <li>Hardened employee-profile APIs by enforcing authentication → authorization → ownership → validation ordering, closing an unauthenticated access path and preventing cross-tenant record-existence leaks; identity derived only from gateway-propagated JWT claims.</li>
-                        <li>Extended a schema-per-tenant PostgreSQL model (Flyway migrations, partial unique indexes, cascade rules) and built 80+ integration tests on a containerized stack (Postgres, LocalStack S3/Secrets Manager) covering RBAC matrices and file round-trips.</li>
-                        <li>Built an AWS Lambda pipeline to parse, normalize, and tax-classify crypto transactions from multiple brokers (FIFO calculation, encoding and cross-environment fixes).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">
-                        <h3><a href="https://cruv.org" target="_blank" style="color: inherit; text-decoration: none;">Cruv.org</a></h3>
-                        <p class="experience-role">Backend Developer (Remote)</p>
-                    </div>
-                    <span class="experience-date">Jan 2026 - March 2026</span>
-                </div>
-                <div class="experience-description">
-                    <ul>
-                        <li>Built an async Python pipeline turning 70+ cybersecurity RSS feeds into executive-grade risk summaries using Gemini + LiteLLM, Qdrant embeddings, MongoDB bulk writes, and aiohttp, with health monitoring.</li>
-                        <li>Built a Django + Mailgun email backend (webhooks/routes) with automated conversation threading, S3 attachment storage, and reliable inbound/outbound processing.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">
-                        <h3>Technokeens IT Solutions Pvt Ltd</h3>
-                        <p class="experience-role">FullStack Developer</p>
-                    </div>
-                    <span class="experience-date">June 2025 - Nov 2025</span>
-                </div>
-                <p class="experience-project">AI Powered Project Management System</p>
-                <div class="experience-description">
-                    <ul>
-                        <li>Built a Django/DRF backend with token auth and REST APIs for projects, tasks, bugs, and sprints, integrated with a React frontend via Axios.</li>
-                        <li>Developed workspace-specific real-time chat using Django Channels (WebSockets).</li>
-                        <li>Deployed a private LLM (Llama 7B) on AWS EC2 GPU instances for automated field extraction from job descriptions and task generation, keeping data private with no external AI APIs.</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Random Forest</span><span class="chip">Whisper</span><span class="chip">sklearn</span>
         </div>
-    </section>
+        <ul>
+          <li>Random Forest classifier with <strong>13 engineered features</strong> cutting repetitive-task identification time via real-time workflow prediction.</li>
+          <li>Multi-modal system pairing <strong>Whisper</strong> voice commands with behavioral pattern analysis — natural-language control of automation across Excel, Word, and the browser.</li>
+          <li>Self-improving ML pipeline that continuously trains on user interactions, boosting prediction accuracy <strong>+15%</strong> over time.</li>
+        </ul>
+      </article>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Projects &amp; Open Source</h2>
-                <p class="section-subtitle">Solving real-world problems with AI and machine learning</p>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Fashion Visual Search and Intelligent Styling Assistant</h3>
-                        <a href="https://github.com/AnandS1807/Fashion-Visual-Search-Intelligent-Styling-Assistant" target="_blank" class="project-link">View on GitHub →</a>
-                    </div>
-                    <p class="project-tech">TypeScript, PyTorch, Selenium, CLIP</p>
-                    <div class="project-description">
-                        <ul>
-                            <li>Engineered a hybrid GNN-CLIP recommendation engine combining visual similarity, outfit compatibility learning (graph neural networks), and metadata-based filtering for enhanced product discovery.</li>
-                            <li>Delivered a CLIP + FAISS visual search achieving 97% accuracy and 10ms query latency across 50K+ products.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Desktop AI Assistant - ML-Powered Automation</h3>
-                        <a href="https://github.com/AnandS1807/joi-desktop-assistant" target="_blank" class="project-link">View on GitHub →</a>
-                    </div>
-                    <p class="project-tech">Python, Random Forest, Whisper NLP, sklearn</p>
-                    <div class="project-description">
-                        <ul>
-                            <li>Developed Random Forest classifier with 13 engineered features that reduced repetitive task identification time through real-time workflow prediction.</li>
-                            <li>Built multi-modal AI system combining Whisper NLP for voice commands with behavioral pattern analysis, enabling natural language control of desktop automation across Excel, Word, and browser applications.</li>
-                            <li>Implemented self-improving ML pipeline that continuously trains on user interactions, increasing prediction accuracy by 15% over time through adaptive learning from real workflow data.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Offline Document Processing System Using RAG and Local LLM</h3>
-                        <a href="https://github.com/AnandS1807/pdf_financial_data_extraction" target="_blank" class="project-link">View on GitHub →</a>
-                    </div>
-                    <p class="project-tech">Python, LangChain, FAISS</p>
-                    <div class="project-description">
-                        <ul>
-                            <li>Built an offline RAG (Retrieval-Augmented Generation) pipeline with LangChain, FAISS, and local LLMs (Ollama, Mistral) to enable context-aware document querying with 90%+ relevance accuracy.</li>
-                            <li>Optimized for large-scale processing of up to 500-page documents with minimal memory overhead.</li>
-                            <li>Developed an OCR pipeline using Tesseract + PIL for scanned documents, enabling efficient processing of unstructured financial and tabular data.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <article class="project-card reveal">
+        <div class="project-top">
+          <h3>Offline Document Processing — RAG + Local LLM</h3>
+          <a href="https://github.com/AnandS1807/pdf_financial_data_extraction" target="_blank" rel="noopener" class="project-link">repo ↗</a>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Secure, scalable backends with an AI/ML foundation</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <p class="skill-list">Python, Java, SQL, JavaScript, C++, R</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Frameworks</h3>
-                    <p class="skill-list">Spring Boot, Django &amp; DRF, Django Channels, Celery, Asyncio, Temporal</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Backend &amp; Infra</h3>
-                    <p class="skill-list">REST APIs, Microservices, PostgreSQL, MongoDB, Qdrant, Flyway, JWT/OAuth (Entra ID), API Gateway, Multi-tenancy, CI/CD</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Cloud &amp; Tools</h3>
-                    <p class="skill-list">AWS (Lambda, S3, EC2, Secrets Manager), Docker, LocalStack, Kubernetes, OpenShift, Git, Postman</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>AI/ML</h3>
-                    <p class="skill-list">LangChain, FAISS, Transformers, Scikit-learn, Pandas, NumPy, Data Analysis</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Soft Skills</h3>
-                    <p class="skill-list">Problem-solving, Teamwork, Communication, Cross-functional collaboration, Fast Learner</p>
-                </div>
-            </div>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">FAISS</span><span class="chip">Ollama</span>
         </div>
-    </section>
+        <ul>
+          <li>Offline <strong>RAG pipeline</strong> (LangChain, FAISS, local LLMs — Ollama, Mistral) for context-aware document querying at <strong>90%+ relevance accuracy</strong>.</li>
+          <li>Optimized for large-scale processing of up to <strong>500-page documents</strong> with minimal memory overhead.</li>
+          <li>OCR pipeline with Tesseract + PIL for scanned documents — efficient handling of unstructured financial and tabular data.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <!-- Achievements Section -->
-    <section id="achievements">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Achievements &amp; Certifications</h2>
-                <p class="section-subtitle">Recognition and continuous learning</p>
-            </div>
+<!-- ================= Skills ================= -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">tech.stack</span>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Secure, scalable backends with an AI/ML foundation.</p>
+    </div>
 
-            <div class="achievements-list">
-                <div class="achievement-item">
-                    <h3>Best Paper Award - IEEE PUNECON 2025</h3>
-                    <p>"Decentralised Voting System using Blockchain" - recognized by the Department of Technology, Savitribai Phule Pune University. IEEE published.</p>
-                    <a href="https://drive.google.com/file/d/1iqvRhAKtlAEu7R81MsWUojQwEhyllxaK/view?usp=sharing" target="_blank" class="achievement-link">View Paper →</a>
-                </div>
-
-                <div class="achievement-item">
-                    <h3>Copyrighted Project</h3>
-                    <p>Exploring Birdsong through Acoustic Clustering - Project for analyzing bird vocalizations using acoustic features.</p>
-                    <a href="https://drive.google.com/file/d/1yGOpZohyiOVA3HPwo4rJPd9cBJNkpO4A/view?usp=sharing" target="_blank" class="achievement-link">View Copyright →</a>
-                </div>
-
-                <div class="achievement-item">
-                    <h3>Hackathon Recognition</h3>
-                    <p>Ranked in the Top 7 out of 100+ teams in a departmental hackathon.</p>
-                    <a href="https://drive.google.com/file/d/11_IqpJhxEye4kd-gElzMcrgOjlvPrLs8/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
-                </div>
-
-                <div class="achievement-item">
-                    <h3>IBM - Full Stack Development, Machine Learning and DL in Python and R</h3>
-                    <p>Comprehensive certification from Udemy covering full-stack development and advanced machine learning techniques.</p>
-                    <a href="https://drive.google.com/file/d/1wgtlctY5uspeB5-0reC0GowwY1p-Ucyb/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
-                </div>
-
-                <div class="achievement-item">
-                    <h3>IBM - Containers w/ Docker, Kubernetes &amp; OpenShift</h3>
-                    <p>Professional certification in containerization and orchestration technologies.</p>
-                    <a href="https://drive.google.com/file/d/1ptXdelGj0B8Y-7gGRgX99ndj4nrSGwBo/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
-                </div>
-
-                <div class="achievement-item">
-                    <h3>Python for Data Science, AI &amp; Development</h3>
-                    <p>Foundational certification in Python programming for data science and AI applications.</p>
-                    <a href="https://drive.google.com/file/d/1o7Na4bodKF49supGPyHupjlybmPA_THC/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
-                </div>
-            </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Languages</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">C++</span><span class="chip">R</span>
         </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-            </div>
-
-            <div class="education-card">
-                <h3>B. Tech in Artificial Intelligence and Data Science</h3>
-                <p class="education-details">Vishwakarma Institute of Information Technology, Pune</p>
-                <p class="education-details">Nov. 2022 - May 2026</p>
-                <p class="education-cgpa">CGPA: 8.41</p>
-            </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Frameworks</h3>
+        <div class="chips">
+          <span class="chip">Spring Boot</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">Django Channels</span><span class="chip">Celery</span><span class="chip">Asyncio</span><span class="chip">Temporal</span>
         </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section id="leadership">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Leadership &amp; Extracurricular</h2>
-                <p class="section-subtitle">Building communities and leading initiatives</p>
-            </div>
-
-            <div class="leadership-card">
-                <div class="leadership-header">
-                    <div>
-                        <h3>Entrepreneurship Development Cell</h3>
-                        <p class="leadership-role">Associate Technical Head &amp; Finance Lead Manager</p>
-                        <p class="education-details">VIIT, Pune</p>
-                    </div>
-                    <span class="leadership-date">Sept 2023 - Oct 2024</span>
-                </div>
-                <div class="leadership-description">
-                    <ul>
-                        <li>Collaborated in building EDC Website</li>
-                        <li>Took workshops to create awareness among students for budgeting in daily life</li>
-                        <li>Joint Treasurer for Vishwapreneur'24, Pune's biggest E-Summit (footfall: 2000)</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Backend &amp; Infra</h3>
+        <div class="chips">
+          <span class="chip">REST APIs</span><span class="chip">Microservices</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Qdrant</span><span class="chip">Flyway</span><span class="chip">JWT / OAuth</span><span class="chip">API Gateway</span><span class="chip">Multi-tenancy</span><span class="chip">CI/CD</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="section-header">
-                    <h2 class="section-title">Let's Connect</h2>
-                    <p class="section-subtitle">Open to collaborations, opportunities, and interesting conversations about backend engineering, AI, and technology.</p>
-                </div>
-
-                <div class="contact-grid">
-                    <a href="mailto:anand120823@gmail.com" class="contact-method">
-                        <div class="contact-method-icon">✉️</div>
-                        <div class="contact-method-label">Email</div>
-                        <div class="contact-method-value">anand120823@gmail.com</div>
-                    </a>
-
-                    <a href="tel:+918855011069" class="contact-method">
-                        <div class="contact-method-icon">📞</div>
-                        <div class="contact-method-label">Phone</div>
-                        <div class="contact-method-value">+91 8855011069</div>
-                    </a>
-
-                    <a href="https://github.com/AnandS1807" target="_blank" class="contact-method">
-                        <div class="contact-method-icon">💻</div>
-                        <div class="contact-method-label">GitHub</div>
-                        <div class="contact-method-value">AnandS1807</div>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/anand-sharma-75644b25a/" target="_blank" class="contact-method">
-                        <div class="contact-method-icon">💼</div>
-                        <div class="contact-method-label">LinkedIn</div>
-                        <div class="contact-method-value">Anand Sharma</div>
-                    </a>
-                </div>
-            </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Cloud &amp; Tools</h3>
+        <div class="chips">
+          <span class="chip">AWS Lambda</span><span class="chip">S3</span><span class="chip">EC2</span><span class="chip">Secrets Manager</span><span class="chip">Docker</span><span class="chip">LocalStack</span><span class="chip">Kubernetes</span><span class="chip">OpenShift</span><span class="chip">Git</span><span class="chip">Postman</span>
         </div>
-    </section>
+      </div>
+      <div class="skill-card reveal">
+        <h3>AI / ML</h3>
+        <div class="chips">
+          <span class="chip">LangChain</span><span class="chip">FAISS</span><span class="chip">Transformers</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Data Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Soft Skills</h3>
+        <div class="chips">
+          <span class="chip">Problem-solving</span><span class="chip">Teamwork</span><span class="chip">Communication</span><span class="chip">Cross-functional collaboration</span><span class="chip">Fast learner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Anand Sharma. All rights reserved.</p>
-    </footer>
+<!-- ================= Achievements ================= -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">achievements/</span>
+      <h2 class="section-title">Achievements &amp; Certifications</h2>
+      <p class="section-subtitle">Recognition and continuous learning.</p>
+    </div>
+
+    <div class="achievements-list">
+      <div class="achievement-item highlight reveal">
+        <h3>Best Paper Award — IEEE PUNECON 2025<span class="badge">★ award</span></h3>
+        <p>"Decentralised Voting System using Blockchain" — recognized by the Department of Technology, Savitribai Phule Pune University. IEEE published.</p>
+        <a href="https://drive.google.com/file/d/1iqvRhAKtlAEu7R81MsWUojQwEhyllxaK/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_paper.pdf →</a>
+      </div>
+
+      <div class="achievement-item reveal">
+        <h3>Copyrighted Project</h3>
+        <p>Exploring Birdsong through Acoustic Clustering — analysis of bird vocalizations using acoustic features.</p>
+        <a href="https://drive.google.com/file/d/1yGOpZohyiOVA3HPwo4rJPd9cBJNkpO4A/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_copyright.pdf →</a>
+      </div>
+
+      <div class="achievement-item reveal">
+        <h3>Hackathon Recognition</h3>
+        <p>Ranked <strong>Top 7 out of 100+ teams</strong> in a departmental hackathon.</p>
+        <a href="https://drive.google.com/file/d/11_IqpJhxEye4kd-gElzMcrgOjlvPrLs8/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_certificate.pdf →</a>
+      </div>
+
+      <div class="achievement-item reveal">
+        <h3>IBM — Full Stack Dev, ML &amp; DL in Python and R</h3>
+        <p>Comprehensive certification covering full-stack development and advanced machine learning techniques.</p>
+        <a href="https://drive.google.com/file/d/1wgtlctY5uspeB5-0reC0GowwY1p-Ucyb/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_certificate.pdf →</a>
+      </div>
+
+      <div class="achievement-item reveal">
+        <h3>IBM — Containers with Docker, Kubernetes &amp; OpenShift</h3>
+        <p>Professional certification in containerization and orchestration technologies.</p>
+        <a href="https://drive.google.com/file/d/1ptXdelGj0B8Y-7gGRgX99ndj4nrSGwBo/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_certificate.pdf →</a>
+      </div>
+
+      <div class="achievement-item reveal">
+        <h3>Python for Data Science, AI &amp; Development</h3>
+        <p>Foundational certification in Python programming for data science and AI applications.</p>
+        <a href="https://drive.google.com/file/d/1o7Na4bodKF49supGPyHupjlybmPA_THC/view?usp=sharing" target="_blank" rel="noopener" class="achievement-link">view_certificate.pdf →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Education & Leadership ================= -->
+<section id="background">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">background.md</span>
+      <h2 class="section-title">Education &amp; Leadership</h2>
+    </div>
+
+    <div class="edu-leader">
+      <div class="info-card reveal">
+        <p class="subhead">Education</p>
+        <h3>B.Tech — Artificial Intelligence &amp; Data Science</h3>
+        <p class="meta">Vishwakarma Institute of Information Technology, Pune</p>
+        <p class="meta">Nov 2022 — May 2026</p>
+        <span class="cgpa">CGPA: 8.41</span>
+      </div>
+
+      <div class="info-card reveal">
+        <p class="subhead">Leadership</p>
+        <h3>Entrepreneurship Development Cell</h3>
+        <p class="meta">Associate Technical Head &amp; Finance Lead Manager · VIIT, Pune</p>
+        <p class="meta">Sept 2023 — Oct 2024</p>
+        <ul>
+          <li>Collaborated in building the EDC website.</li>
+          <li>Ran workshops creating student awareness of budgeting in daily life.</li>
+          <li>Joint Treasurer for <strong>Vishwapreneur'24</strong>, Pune's biggest E-Summit (footfall: 2,000).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Contact ================= -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">ping me</span>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="contact-lead">Open to collaborations, opportunities, and interesting conversations about backend engineering, AI, and technology.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a href="mailto:anand120823@gmail.com" class="contact-method reveal">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.5l-8 5.2-8-5.2V6h16zM4 18V8.9l7.5 4.9a1 1 0 0 0 1 0L20 8.9V18H4z"/></svg>
+        <div class="contact-method-label">Email</div>
+        <div class="contact-method-value">anand120823@gmail.com</div>
+      </a>
+      <a href="tel:+918855011069" class="contact-method reveal">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1z"/></svg>
+        <div class="contact-method-label">Phone</div>
+        <div class="contact-method-value">+91 88550 11069</div>
+      </a>
+      <a href="https://github.com/AnandS1807" target="_blank" rel="noopener" class="contact-method reveal">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        <div class="contact-method-label">GitHub</div>
+        <div class="contact-method-value">AnandS1807</div>
+      </a>
+      <a href="https://www.linkedin.com/in/anand-sharma-75644b25a/" target="_blank" rel="noopener" class="contact-method reveal">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.49 2.49 0 1 1 5 8.48a2.49 2.49 0 0 1-.02-4.98zM3 9.75h4V21H3zM9.5 9.75h3.8v1.54h.06a4.17 4.17 0 0 1 3.75-2.06c4 0 4.75 2.64 4.75 6.06V21h-4v-5c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-3.8z"/></svg>
+        <div class="contact-method-label">LinkedIn</div>
+        <div class="contact-method-value">Anand Sharma</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Anand Sharma · designed &amp; built with <span class="heart">&lt;/&gt;</span> in Pune</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Nav scroll-spy
+  const links = document.querySelectorAll('nav ul a');
+  const sections = [...links].map((a) => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach((s) => s && spy.observe(s));
+
+  // Hero role typewriter (gentle, loops through a few phrases)
+  const phrases = [
+    'backend_developer()',
+    'multi_tenant.schemas + jwt.verify()',
+    'aws.lambda.deploy() → fifo.classify()',
+    'django + spring_boot + postgresql',
+  ];
+  const typeEl = document.getElementById('type-text');
+  if (typeEl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let p = 0, i = phrases[0].length, deleting = true;
+    (function tick() {
+      const word = phrases[p];
+      i += deleting ? -1 : 1;
+      typeEl.textContent = word.slice(0, i);
+      let delay = deleting ? 38 : 70;
+      if (!deleting && i === word.length) { delay = 2600; deleting = true; }
+      else if (deleting && i === 0) { p = (p + 1) % phrases.length; deleting = false; delay = 400; }
+      setTimeout(tick, delay);
+    })();
+  }
+</script>
 </body>
 </html>
