@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anand Sharma - AI & Data Science Engineer</title>
+    <title>Anand Sharma - Backend Developer</title>
     <style>
         * {
             margin: 0;
@@ -605,7 +605,7 @@
             nav {
                 display: none;
             }
-            
+
             section {
                 page-break-inside: avoid;
                 min-height: auto;
@@ -632,9 +632,9 @@
             <div class="hero-content">
                 <h1>Anand Sharma</h1>
                 <p class="location">Pune, Maharashtra</p>
-                <p class="tagline">AI & Data Science Engineer specializing in building intelligent systems with LangChain, RAG, and ML deployment.</p>
-                <p class="bio">Final-year B.Tech student with expertise in C++, SQL, and Python. Experienced in AI-powered systems using LangChain, FAISS, vector databases, and transformer-based models. Skilled in processing structured and unstructured data, NLP pipelines, and ML model deployment.</p>
-                
+                <p class="tagline">Backend Developer building secure, multi-tenant SaaS platforms and distributed systems with Spring Boot, Django, and AWS.</p>
+                <p class="bio">Backend developer at Caxsol working on API gateways, tenant-isolated PostgreSQL schemas, and secure file workflows on AWS. Previously built async LLM pipelines (Gemini, Qdrant) and Django/DRF backends. B.Tech in AI &amp; Data Science from VIIT Pune, IEEE-published researcher, and two-time student entrepreneur.</p>
+
                 <div class="contact-info">
                     <a href="tel:+918855011069">📞 +91 8855011069</a>
                     <a href="mailto:anand120823@gmail.com">✉️ anand120823@gmail.com</a>
@@ -655,7 +655,42 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">Building production-ready AI systems and scalable backends</p>
+                <p class="section-subtitle">Building secure, multi-tenant backends and production-ready AI pipelines</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">
+                        <h3><a href="https://www.caxsol.com/" target="_blank" style="color: inherit; text-decoration: none;">Caxsol, Pune</a></h3>
+                        <p class="experience-role">Backend Developer</p>
+                    </div>
+                    <span class="experience-date">April 2026 - Present</span>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Built the API Gateway for a multi-tenant HR SaaS: Entra ID JWT validation (JWKS, signature/issuer/audience checks), routing across 6 microservices, tenant-scoped rate limiting, and AWS Secrets Manager config.</li>
+                        <li>Designed a presigned S3 upload/download flow (presign → direct browser upload → server-verified confirm) with per-tenant key scoping, size/MIME checks, magic-byte sniffing, and automatic quarantine cleanup, so no file streams pass through the app server.</li>
+                        <li>Hardened employee-profile APIs by enforcing authentication → authorization → ownership → validation ordering, closing an unauthenticated access path and preventing cross-tenant record-existence leaks; identity derived only from gateway-propagated JWT claims.</li>
+                        <li>Extended a schema-per-tenant PostgreSQL model (Flyway migrations, partial unique indexes, cascade rules) and built 80+ integration tests on a containerized stack (Postgres, LocalStack S3/Secrets Manager) covering RBAC matrices and file round-trips.</li>
+                        <li>Built an AWS Lambda pipeline to parse, normalize, and tax-classify crypto transactions from multiple brokers (FIFO calculation, encoding and cross-environment fixes).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">
+                        <h3><a href="https://cruv.org" target="_blank" style="color: inherit; text-decoration: none;">Cruv.org</a></h3>
+                        <p class="experience-role">Backend Developer (Remote)</p>
+                    </div>
+                    <span class="experience-date">Jan 2026 - March 2026</span>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Built an async Python pipeline turning 70+ cybersecurity RSS feeds into executive-grade risk summaries using Gemini + LiteLLM, Qdrant embeddings, MongoDB bulk writes, and aiohttp, with health monitoring.</li>
+                        <li>Built a Django + Mailgun email backend (webhooks/routes) with automated conversation threading, S3 attachment storage, and reliable inbound/outbound processing.</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="experience-item">
@@ -669,9 +704,9 @@
                 <p class="experience-project">AI Powered Project Management System</p>
                 <div class="experience-description">
                     <ul>
-                        <li>Constructed a fully functional Django backend with DRF, including custom models, token-based authentication, and RESTful APIs for projects, tasks, bugs, and sprints, integrated seamlessly with a React frontend via Axios.</li>
-                        <li>Developed WebSocket-based real-time chat functionality (workspace specific) using Django Channels.</li>
-                        <li>Deployed and integrated a private LLM (Llama 7B) on AWS EC2 GPU instances for automated field extraction from job descriptions and generating tasks, ensuring complete data privacy and eliminating dependency on external AI APIs.</li>
+                        <li>Built a Django/DRF backend with token auth and REST APIs for projects, tasks, bugs, and sprints, integrated with a React frontend via Axios.</li>
+                        <li>Developed workspace-specific real-time chat using Django Channels (WebSockets).</li>
+                        <li>Deployed a private LLM (Llama 7B) on AWS EC2 GPU instances for automated field extraction from job descriptions and task generation, keeping data private with no external AI APIs.</li>
                     </ul>
                 </div>
             </div>
@@ -682,7 +717,7 @@
     <section id="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Projects & Open Source</h2>
+                <h2 class="section-title">Projects &amp; Open Source</h2>
                 <p class="section-subtitle">Solving real-world problems with AI and machine learning</p>
             </div>
 
@@ -739,33 +774,38 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">A comprehensive toolkit for building modern AI applications</p>
+                <p class="section-subtitle">Secure, scalable backends with an AI/ML foundation</p>
             </div>
 
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Languages</h3>
-                    <p class="skill-list">Python, R, Go, SQL, C++, JavaScript</p>
+                    <p class="skill-list">Python, Java, SQL, JavaScript, C++, R</p>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Data Tools & Frameworks</h3>
-                    <p class="skill-list">Pandas, Django, LangChain, Transformers, NumPy, Matplotlib, Seaborn, Scikit-learn</p>
+                    <h3>Frameworks</h3>
+                    <p class="skill-list">Spring Boot, Django &amp; DRF, Django Channels, Celery, Asyncio, Temporal</p>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Data Skills</h3>
-                    <p class="skill-list">Data Cleaning, Data Analysis, Machine Learning, Statistical Analysis, Data Visualization</p>
+                    <h3>Backend &amp; Infra</h3>
+                    <p class="skill-list">REST APIs, Microservices, PostgreSQL, MongoDB, Qdrant, Flyway, JWT/OAuth (Entra ID), API Gateway, Multi-tenancy, CI/CD</p>
                 </div>
 
                 <div class="skill-category">
-                    <h3>DevOps & Tools</h3>
-                    <p class="skill-list">Git, Docker, OpenShift, Kubernetes, AWS</p>
+                    <h3>Cloud &amp; Tools</h3>
+                    <p class="skill-list">AWS (Lambda, S3, EC2, Secrets Manager), Docker, LocalStack, Kubernetes, OpenShift, Git, Postman</p>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI/ML</h3>
+                    <p class="skill-list">LangChain, FAISS, Transformers, Scikit-learn, Pandas, NumPy, Data Analysis</p>
                 </div>
 
                 <div class="skill-category">
                     <h3>Soft Skills</h3>
-                    <p class="skill-list">Problem-solving, Teamwork, Communication, Fast Learner</p>
+                    <p class="skill-list">Problem-solving, Teamwork, Communication, Cross-functional collaboration, Fast Learner</p>
                 </div>
             </div>
         </div>
@@ -775,11 +815,17 @@
     <section id="achievements">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Achievements & Certifications</h2>
+                <h2 class="section-title">Achievements &amp; Certifications</h2>
                 <p class="section-subtitle">Recognition and continuous learning</p>
             </div>
 
             <div class="achievements-list">
+                <div class="achievement-item">
+                    <h3>Best Paper Award - IEEE PUNECON 2025</h3>
+                    <p>"Decentralised Voting System using Blockchain" - recognized by the Department of Technology, Savitribai Phule Pune University. IEEE published.</p>
+                    <a href="https://drive.google.com/file/d/1iqvRhAKtlAEu7R81MsWUojQwEhyllxaK/view?usp=sharing" target="_blank" class="achievement-link">View Paper →</a>
+                </div>
+
                 <div class="achievement-item">
                     <h3>Copyrighted Project</h3>
                     <p>Exploring Birdsong through Acoustic Clustering - Project for analyzing bird vocalizations using acoustic features.</p>
@@ -799,13 +845,13 @@
                 </div>
 
                 <div class="achievement-item">
-                    <h3>IBM - Containers w/ Docker, Kubernetes & OpenShift</h3>
+                    <h3>IBM - Containers w/ Docker, Kubernetes &amp; OpenShift</h3>
                     <p>Professional certification in containerization and orchestration technologies.</p>
                     <a href="https://drive.google.com/file/d/1ptXdelGj0B8Y-7gGRgX99ndj4nrSGwBo/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
                 </div>
 
                 <div class="achievement-item">
-                    <h3>Python for Data Science, AI & Development</h3>
+                    <h3>Python for Data Science, AI &amp; Development</h3>
                     <p>Foundational certification in Python programming for data science and AI applications.</p>
                     <a href="https://drive.google.com/file/d/1o7Na4bodKF49supGPyHupjlybmPA_THC/view?usp=sharing" target="_blank" class="achievement-link">View Certificate →</a>
                 </div>
@@ -823,8 +869,8 @@
             <div class="education-card">
                 <h3>B. Tech in Artificial Intelligence and Data Science</h3>
                 <p class="education-details">Vishwakarma Institute of Information Technology, Pune</p>
-                <p class="education-details">Nov. 2022 - Present</p>
-                <p class="education-cgpa">CGPA: 8.25</p>
+                <p class="education-details">Nov. 2022 - May 2026</p>
+                <p class="education-cgpa">CGPA: 8.41</p>
             </div>
         </div>
     </section>
@@ -833,7 +879,7 @@
     <section id="leadership">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Leadership & Extracurricular</h2>
+                <h2 class="section-title">Leadership &amp; Extracurricular</h2>
                 <p class="section-subtitle">Building communities and leading initiatives</p>
             </div>
 
@@ -841,7 +887,7 @@
                 <div class="leadership-header">
                     <div>
                         <h3>Entrepreneurship Development Cell</h3>
-                        <p class="leadership-role">Associate Technical Head & Finance Lead Manager</p>
+                        <p class="leadership-role">Associate Technical Head &amp; Finance Lead Manager</p>
                         <p class="education-details">VIIT, Pune</p>
                     </div>
                     <span class="leadership-date">Sept 2023 - Oct 2024</span>
@@ -863,7 +909,7 @@
             <div class="contact-content">
                 <div class="section-header">
                     <h2 class="section-title">Let's Connect</h2>
-                    <p class="section-subtitle">Open to collaborations, opportunities, and interesting conversations about AI and technology.</p>
+                    <p class="section-subtitle">Open to collaborations, opportunities, and interesting conversations about backend engineering, AI, and technology.</p>
                 </div>
 
                 <div class="contact-grid">
@@ -880,4 +926,24 @@
                     </a>
 
                     <a href="https://github.com/AnandS1807" target="_blank" class="contact-method">
-                        <div class="contact-method-
+                        <div class="contact-method-icon">💻</div>
+                        <div class="contact-method-label">GitHub</div>
+                        <div class="contact-method-value">AnandS1807</div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/anand-sharma-75644b25a/" target="_blank" class="contact-method">
+                        <div class="contact-method-icon">💼</div>
+                        <div class="contact-method-label">LinkedIn</div>
+                        <div class="contact-method-value">Anand Sharma</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Anand Sharma. All rights reserved.</p>
+    </footer>
+</body>
+</html>
